@@ -21,6 +21,14 @@ export const TodoList = () => {
 		fn();
 	}, [todos]);
 
+	const removeTodo = (index) => {
+		const fn = async () => {
+			await setTodos(todos.filter((item, i) => index != i));
+		};
+
+		fn();
+	};
+
 	return (
 		<div>
 			<input
@@ -35,7 +43,9 @@ export const TodoList = () => {
 			/>
 			<ul>
 				{todos.map((todo, index) => (
-					<li key={index}>{todo}</li>
+					<li key={index}>
+						{todo} <span onClick={() => removeTodo(index)}>X</span>
+					</li>
 				))}
 			</ul>
 		</div>
